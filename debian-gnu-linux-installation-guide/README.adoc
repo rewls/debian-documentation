@@ -1,0 +1,6 @@
+= Debian GNU/Linux Installation Guide
+
+* This document contains installation instructions for the Debian GNU/Linux 12
+  system (codename "bookworm"), for the 64-bit PC (“amd64") architecture.
+* It also contains pointers to more information and information on how to make
+  the most of your new Debian system.
