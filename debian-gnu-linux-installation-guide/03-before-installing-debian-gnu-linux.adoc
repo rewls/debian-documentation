@@ -1,0 +1,47 @@
+= Chapter 3 Before Installing Debian GNU/Linux
+
+* This chapter deals with the preparation for installing Debian before you
+  even boot the installer.
+* This includes backing up your data, gathering information about your
+  hardware, and locating any necessary information.
+
+== 3.1 Overview of the Installation Process
+
+* Here's a road map for the steps you will take during the installation
+  process.
+
+1. Back up any existing data or documents on the hard disk where you plan to
+   install.
+2. Gather information about your computer and any needed documentation, before
+   starting the installation.
+3. Locate and/or download the installer software and any specialized driver or
+   firmware files your machine requires.
+4. Set up boot media such as CDs/DVDs/USB sticks or provide a network boot
+   infrastructure from which the installer can be booted.
+5. Boot the installation system.
+6. Select the installation language.
+7. Activate the ethernet network connection, if available.
+8. If necessary, resize existing partitions on your target hard disk to make
+   space for the installation.
+9. Create and mount the partitions on which Debian will be installed.
+10. Watch the automatic download/install/setup of the base system.
+11. Select and install additional software.
+12. Install a boot loader which can start up Debian GNU/Linux and/or your
+	existing system.
+13. Load the newly installed system for the first time.
+
+== 3.4 Meeting Minimum Hardware Requirements
+
+* Once you have gathered information about your computer's hardware, check that
+  your hardware will let you do the type of installation that you want to do.
+* Depending on your needs, you might manage with less than some of the
+  recommended hardware listed in the table below.
+* However, most users risk being frustrated if they ignore these suggestions.
+
+:table-number: 3.1
+.Recommended Minimum System Requirements
+|===
+|Install Type	|RAM (minimum)	|RAM (recommended)	|Hard Drive
+
+|No desktop		|256 megabytes	|512 megabytes		|4 gigabytes
+|===
