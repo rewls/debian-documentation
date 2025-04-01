@@ -1,0 +1,21 @@
+== 2.5. Memory and Disk Space Requirements
+
+* You must have at least 780MB of memory and 1160MB of hard disk space to
+  perform a normal installation.
+* Note that these are fairly minimal numbers.
+* For more realistic figures, see Section 3.4, "Meeting Minimum Hardware
+  Requirements".
+
+'''
+
+* The installer normally automatically enables memory-saving tricks to be able
+  to run on such low-memory system, but on architectures that are less tested
+  it may miss doing so.
+* It can however be enabled manually by appending the `lowmem=1` or even
+  `lowmem=2` boot parameter (see also Section 6.3.1.1, "Check available memory /
+  low memory mode" and Section 5.3.2, "Debian Installer Parameters").
+
+'''
+
+* Installation on systems with less memory or disk space available may be
+  possible but is only advised for experienced users.
