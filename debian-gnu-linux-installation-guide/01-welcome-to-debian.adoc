@@ -1,0 +1,77 @@
+= Chapter 1. Welcome to Debian
+
+* This chapter provides an overview of the Debian Project and Debian
+  GNU/Linux.
+* If you already know about the Debian Project's history and the Debian
+  GNU/Linux distribution, feel free to skip to the next chapter.
+
+== 1.5 Getting Debian
+
+* For information on how to download Debian GNU/Linux from the Internet or
+  from whom official Debian installation media can be purchased, see the
+  distribution web page.
+* The list of Debian mirrors contains a full set of official Debian mirrors,
+  so you can easily find the nearest one.
+
+'''
+
+* Debian can be upgraded after installation very easily.
+* The installation procedure will help set up the system so that you can make
+  those upgrades once installation is complete, if need be.
+
+== 1.7. Organization of This Document
+
+* This document is meant to serve as a manual for first-time Debian users.
+* It tries to make as few assumptions as possible about your level of
+  expertise.
+* However, we do assume that you have a general understanding of how the
+  hardware in your computer works.
+
+'''
+
+* Expert users may also find interesting reference information in this
+  document, including minimum installation sizes, details about the hardware
+  supported by the Debian installation system, and so on.
+* We encourage expert users to jump around in the document.
+
+'''
+
+* In general, this manual is arranged in a linear fashion, walking you through
+  the installation process from start to finish.
+* Here are the steps in installing Debian GNU/Linux, and the sections of this
+  document which correlate with each step:
+1. Determine whether your hardware meets the requirements for using the
+   installation system, in Chapter 2, System Requirements.
+2. Backup your system, perform any necessary planning and hardware
+   configuration prior to installing Debian, in Chapter 3, Before Installing
+   Debian GNU/Linux. +
+   If you are preparing a multi-boot system, you may need to create
+   partitionable space on your hard disk for Debian to use.
+3. In Chapter 4, Obtaining System Installation Media, you will obtain the
+   necessary installation files for your method of installation.
+4. The next Chapter 5, Booting the Installation System describes booting into
+   the installation system. +
+   This chapter also discusses troubleshooting procedures in case you have
+   problems with this step.
+5. Perform the actual installation according to Chapter 6, Using the Debian
+   Installer. +
+   This involves choosing your language, configuring peripheral driver
+   modules, configuring your network connection, so that remaining
+   installation files can be obtained directly from a Debian server (if you
+   are not installing from a set of CD/DVD installation images), partitioning
+   your hard drives and installation of a base system, then selection and
+   installation of tasks. +
+   (Some background about setting up the partitions for your Debian
+   system is explained in Appendix C, Partitioning for Debian.)
+6. Boot into your newly installed base system, from Chapter 7, Booting Into
+   Your New Debian System.
+
+* Once you've got your system installed, you can read Chapter 8, Next Steps
+  and Where to Go From Here.
+* That chapter explains where to look to find more information about Unix and
+  Debian, and how to replace your kernel.
+
+'''
+
+* Finally, information about this document and how to contribute to it may be
+  found in Appendix E, Administrivia.
