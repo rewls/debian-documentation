@@ -1,0 +1,284 @@
+= Appendix C Partitioning for Debian
+
+== C.1 Deciding on Debian Partitions and Sizes
+
+* At a bare minimum, GNU/Linux needs one partition for itself.
+* You can have a single partition containing the entire operating system,
+  applications, and your personal files.
+* Most people feel that a separate swap partition is also a necessity,
+  although it's not strictly true.
+* "Swap" is scratch space for an operating system, which allows the system to
+  use disk storage as "virtual memory".
+* By putting swap on a separate partition, Linux can make much more efficient
+  use of it.
+* It is possible to force Linux to use a regular file as swap, but it is not
+  recommended.
+
+'''
+
+* Most people choose to give GNU/Linux more than the minimum number of
+  partitions, however.
+* There are two reasons you might want to break up the file system into a
+  number of smaller partitions.
+* The first is for safety.
+* If something happens to corrupt the file system, generally only one
+  partition is affected.
+* Thus, you only have to replace (from the backups you've been carefully
+  keeping) a portion of your system.
+* At a bare minimum, you should consider creating what is commonly called a
+  "root partition".
+* This contains the most essential components of the system.
+* If any other partitions get corrupted, you can still boot into GNU/Linux to
+  fix the system.
+* This can save you the trouble of having to reinstall the system from
+  scratch.
+
+'''
+
+* The second reason is generally more important in a business setting, but it
+  really depends on your use of the machine.
+* For example, a mail server getting spammed with e-mail can easily fill a
+  partition.
+* If you made `/var/mail` a separate partition on the mail server, most of the
+  system will remain working even if you get spammed.
+
+'''
+
+* The only real drawback to using more partitions is that it is often
+  difficult to know in advance what your needs will be.
+* If you make a partition too small then you will either have to reinstall the
+  system or you will be constantly moving things around to make room in the
+  undersized partition.
+* On the other hand, if you make the partition too big, you will be wasting
+  space that could be used elsewhere.
+* Disk space is cheap nowadays, but why throw your money away?
+
+== C.2 The Directory Tree
+
+* Debian GNU/Linux adheres to the Filesystem Hierarchy Standard for directory
+  and file naming.
+* This standard allows users and software programs to predict the location of
+  files and directories.
+* The root level directory is represented simply by the slash `/`.
+* At the root level, all Debian systems include these directories:
+
+[%autowidth,cols="m,d"]
+|===
+|Directory	|Content
+
+|bin		|Essential command binaries
+|boot		|Static files of the boot loader
+|dev		|Device files
+|etc		|Host-specific system configuration
+|home		|User home directories
+|lib		|Essential shared libraries and kernel modules
+|media		|Contains mount points for replaceable media
+|mnt		|Mount point for mounting a file system temporarily
+|proc		|Virtual directory for system information
+|root		|Home directory for the root user
+|run		|Run-time variable data
+|sbin		|Essential system binaries
+|sys		|Virtual directory for system information
+|tmp		|Temporary files
+|usr		|Secondary hierarchy
+|var		|Variable data
+|srv		|Data for services provided by the system
+|opt		|Add-on application software packages
+|===
+
+* The following is a list of important considerations regarding directories
+  and partitions.
+* Note that disk usage varies widely given system configuration and specific
+  usage patterns.
+* The recommendations here are general guidelines and provide a starting point
+  for partitioning.
+** The root partition `/` must always physically contain `/etc`, `/bin`,
+   `/sbin`, `/lib`, `/dev` and `/usr`, otherwise you won't be able to boot. +
+   This means that you should provide at least 600-750MB of disk space for the
+   root partition including `/usr`, or 5-6GB for a workstation or a server
+   installation.
+** `/var`: variable data like news articles, e-mails, web sites, databases,
+   the packaging system cache, etc. will be placed under this directory. +
+   The size of this directory depends greatly on the usage of your system, but
+   for most people will be dictated by the package management tool's
+   overhead. + 
+   If you are going to do a full installation of just about everything Debian
+   has to offer, all in one session, setting aside 2 or 3 GB of space for
+   `/var` should be sufficient. +
+   If you are going to install in pieces (that is to say, install services and
+   utilities, followed by text stuff, then X, ...), you can get away with
+   300-500 MB. +
+** If hard drive space is at a premium and you don't plan on doing major
+   system updates, you can get by with as little as 30 or 40 MB.
+** `/tmp`: temporary data created by programs will most likely go in this
+   directory. +
+   40-100MB should usually be enough. +
+   Some applications -- including archive manipulators, CD/DVD authoring
+   tools, and multimedia software -- may use `/tmp` to temporarily store image
+   files. +
+   If you plan to use such applications, you should adjust the space available
+   in `/tmp` accordingly.
+** `/home`: every user will put his personal data into a subdirectory of this
+   directory. +
+   Its size depends on how many users will be using the system and what files
+   are to be stored in their directories. +
+   Depending on your planned usage you should reserve about 100MB for each
+   user, but adapt this value to your needs.
+   Reserve a lot more space if you plan to save a lot of multimedia files
+   (pictures, MP3, movies) in your home directory.
+
+== C.3 Recommended Partitioning Scheme
+
+* For new users, personal Debian boxes, home systems, and other single-user
+  setups, a single `/` partition (plus swap) is probably the easiest, simplest
+  way to go.
+* The recommended partition type is ext4.
+
+'''
+
+* For multi-user systems or systems with lots of disk space, it's best to put
+  `/var`, `/tmp`, and `/home` each on their own partitions separate from the
+  `/` partition.
+
+'''
+
+* You might need a separate `/usr/local` partition if you plan to install many
+  programs that are not part of the Debian distribution.
+* If your machine will be a mail server, you might need to make `/var/mail` a
+  separate partition.
+* If you are setting up a server with lots of user accounts, it's generally
+  good to have a separate, large `/home` partition.
+* In general, the partitioning situation varies from computer to computer
+  depending on its uses.
+
+'''
+
+* For very complex systems, you should see the Multi Disk HOWTO.
+* This contains in-depth information, mostly of interest to ISPs and people
+  setting up servers.
+
+'''
+
+* With respect to the issue of swap partition size, there are many views.
+* One rule of thumb which works well is to use as much swap as you have system
+  memory.
+* It also shouldn't be smaller than 512MB, in most cases.
+* Of course, there are exceptions to these rules.
+
+'''
+
+* As an example, an older home machine might have 512MB of RAM and a 20GB SATA
+  drive on `/dev/sda`.
+* There might be a 8GB partition for another operating system on `/dev/sda1`, a
+  512MB swap partition on `/dev/sda3` and about 11.4GB on `/dev/sda2` as the
+  Linux partition. 
+
+'''
+
+* For an idea of the space taken by tasks you might be interested in adding
+  after your system installation is complete, check Section D.2.
+
+== C.4 Device Names in Linux
+
+* Linux disks and partition names may be different from other operating
+  systems.
+* You need to know the names that Linux uses when you create and mount
+  partitions.
+* Here's the basic naming scheme:
+** The first hard disk detected is named `/dev/sda`.
+** The second hard disk detected is named `/dev/sdb`, and so on.
+** The first SCSI CD-ROM is named `/dev/scd0`, also known as `/dev/sr0`.
+
+* The partitions on each disk are represented by appending a decimal number to
+  the disk name: `sda1` and `sda2` represent the first and second partitions of
+  the first SCSI disk drive in your system.
+
+'''
+
+* Here is a real-life example.
+* Let's assume you have a system with 2 SCSI disks, one at SCSI address 2 and
+  the other at SCSI address 4.
+* The first disk (at address 2) is then named `sda`, and the second `sdb`.
+* If the `sda` drive has 3 partitions on it, these will be named `sda1`,
+  `sda2`, and `sda3`.
+* The same applies to the `sdb` disk and its partitions.
+
+'''
+
+* Note that if you have two SCSI host bus adapters (i.e., controllers), the
+  order of the drives can get confusing.
+* The best solution in this case is to watch the boot messages, assuming you
+  know the drive models and/or capacities.
+
+'''
+
+* Linux represents the primary partitions as the drive name, plus the numbers
+  1 through 4.
+* For example, the first primary partition on the first drive is `/dev/sda1`.
+* The logical partitions are numbered starting at 5, so the first logical
+  partition on that same drive is `/dev/sda5`.
+* Remember that the extended partition, that is, the primary partition holding
+  the logical partitions, is not usable by itself.
+
+== C.5 Debian Partitioning Programs
+
+* Several varieties of partitioning programs have been adapted by Debian
+  developers to work on various types of hard disks and computer
+  architectures.
+* Following is a list of the program(s) applicable for your architecture.
+partman::
+** Recommended partitioning tool in Debian.
+** This Swiss army knife can also resize partitions, create filesystems
+   and assign them to the mountpoints.
+
+fdisk::
+** The original Linux disk partitioner, good for gurus.
+** Be careful if you have existing FreeBSD partitions on your machine.
+** The installation kernels include support for these partitions, but the way
+   that fdisk represents them (or not) can make the device names differ.
+** See the Linux+FreeBSD HOWTO.
+
+cfdisk::
+** A simple-to-use, full-screen disk partitioner for the rest of us.
+** Note that *cfdisk* doesn't understand FreeBSD partitions at all, and,
+   again, device names may differ as a result.
+
+'''
+
+* One of these programs will be run by default when you select Partition disks
+  (or similar).
+* It may be possible to use a different partitioning tool from the command
+  line on VT2, but this is not recommended.
+
+'''
+
+* Remember to mark your boot partition as "Bootable".
+
+=== C.5.1 Partitioning for 64-bit PC
+
+* If you are using a new harddisk (or want to wipe out the whole partition
+  table of your disk), a new partition table needs to be created.
+* The "Guided partitioning" does this automatically, but when partitioning
+  manually, move the selection on the top-level entry of the disk and hit
+  Enter.
+* That will create a new partition table on that disk.
+* In expert mode, you will then be asked for the type of the partition table.
+* Default for UEFI-based systems is "gpt", while for the older BIOS world the
+  default value is "msdos".
+* In a standard priority installation those defaults will be used
+  automatically.
+
+[NOTE]
+====
+* When a partition table with type "gpt" was selected (default for UEFI
+  systems), a free space of 1 MB will automatically get created at the
+  beginning of the disk.
+* This is intended and required to embed the GRUB2 bootloader.
+====
+
+* If you have an existing other operating system such as DOS or Windows and
+  you want to preserve that operating system while installing Debian, you may
+  need to resize its partition to free up space for the Debian installation.
+* The installer supports resizing of both FAT and NTFS filesystems; when you
+  get to the installer's partitioning step, select the option Manual and then
+  simply select an existing partition and change its size.
