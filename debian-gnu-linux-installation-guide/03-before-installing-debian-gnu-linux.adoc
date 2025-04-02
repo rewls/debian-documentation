@@ -34,8 +34,14 @@
 
 * Once you have gathered information about your computer's hardware, check that
   your hardware will let you do the type of installation that you want to do.
+
+'''
+
 * Depending on your needs, you might manage with less than some of the
   recommended hardware listed in the table below.
+
+'''
+
 * However, most users risk being frustrated if they ignore these suggestions.
 
 :table-number: 3.1
@@ -45,3 +51,13 @@
 
 |No desktop		|256 megabytes	|512 megabytes		|4 gigabytes
 |===
+
+* Disk space required for the smooth operation of the Debian GNU/Linux system
+  itself is taken into account in these recommended system requirements.
+* Notably, the `/var` partition contains a lot of state information specific
+  to Debian in addition to its regular contents, like logfiles.
+* The *dpkg* files (with information on all installed packages) can easily
+  consume 40MB.
+* Also, *apt* puts downloaded packages here before they are installed.
+* You should usually allocate at least 200MB for `/var,` and a lot more if you
+  install a graphical desktop environment.
