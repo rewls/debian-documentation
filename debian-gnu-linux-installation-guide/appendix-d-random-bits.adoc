@@ -1,0 +1,96 @@
+= Appendix D Random Bits
+
+== D.1 Linux Devices
+
+* In Linux various special files can be found under the directory `/dev`.
+* These files are called device files and behave unlike ordinary files.
+* The most common types of device files are for block devices and character
+  devices.
+* These files are an interface to the actual driver (part of the Linux kernel)
+  which in turn accesses the hardware.
+* Another, less common, type of device file is the named _pipe_.
+* The most important device files are listed in the tables below.
+
+[%autowidth,cols="m,d"]
+|===
+|sda	|First hard disk
+|sdb	|Second hard disk
+|sda1	|First partition of the first hard disk
+|sdb7	|Seventh partition of the second hard disk
+|===
+
+[%autowidth,cols="m,d"]
+|===
+|sr0	|First CD-ROM
+|sr1	|Second CD-ROM
+|===
+
+[%autowidth,cols="m,d"]
+|===
+|ttyS0	|Serial port 0, COM1 under MS-DOS
+|ttyS1	|Serial port 1, COM2 under MS-DOS
+|psaux	|PS/2 mouse device
+|gpmdata|Pseudo device, repeater data from GPM (mouse) daemon
+|===
+
+[%autowidth,cols="m,d"]
+|===
+|cdrom	|Symbolic link to the CD-ROM drive
+|mouse	|Symbolic link to the mouse device file
+|===
+
+[%autowidth,cols="m,d"]
+|===
+|null	|Anything written to this device will disappear
+|zero	|One can endlessly read zeros out of this device
+|===
+
+== D.2 Disk Space Needed for Tasks
+
+* A standard installation for the amd64 architecture, including all standard
+  packages and using the default kernel, takes up 1242MB of disk space.
+* A minimal base installation, without the "Standard system" task selected,
+  will take 1012MB.
+
+[IMPORTANT]
+====
+* In both cases this is the actual disk space used _after_ the installation is
+  finished and any temporary files deleted.
+* It also does not take into account overhead used by the file system, for
+  example for journal files.
+* This means that significantly more disk space is needed both _during_ the
+  installation and for normal system use.
+====
+
+* The following table lists sizes reported by aptitude for the tasks listed in
+  tasksel.
+* Note that some tasks have overlapping constituents, so the total installed
+  size for two tasks together may be less than the total obtained by adding up
+  the numbers.
+
+'''
+
+* By default the installer will install the GNOME desktop environment, but
+  alternative desktop environments can be selected either by using one of the
+  special installation images, or by specifying the desired desktop
+  environment during installation (see Section 6.3.6.2).
+
+'''
+
+* Note that you will need to add the sizes listed in the table to the size of
+  the standard installation when determining the size of partitions.
+* Most of the size listed as "Installed size" will end up in `/usr` and in
+  `/lib`; the size listed as "Download size" is (temporarily) required in
+  `/var`.
+
+[%autowidth]
+|===
+|Task		|Installed size (MB)	|Download size (MB)	|Space needed to install (MB)
+
+|SSH server	|2						|1					|3
+|===
+
+* If you install in a language other than English, *tasksel* may automatically
+  install a _localization task_, if one is available for your language.
+* Space requirements differ per language; you should allow up to 350MB in
+  total for download and installation.
