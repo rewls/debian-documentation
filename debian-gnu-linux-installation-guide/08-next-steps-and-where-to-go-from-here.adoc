@@ -1,0 +1,86 @@
+= Chapter 8 Next Steps and Where to Go From Here
+:toc: left
+:experimental:
+
+== 8.1 Shutting down the system
+
+* To shut down a running Debian GNU/Linux system, you must not reboot with the
+  reset switch on the front or back of your computer, or just turn off the
+  computer.
+* Debian GNU/Linux should be shut down in a controlled manner, otherwise files
+  might get lost and/or disk damage might occur.
+* If you run a desktop environment, there is usually an option to "log out"
+  available from the application menu that allows you to shutdown (or reboot)
+  the system.
+
+'''
+
+* Alternatively you can press the key combination kbd:[Ctrl+Alt+Del].
+* If the key combinations do not work, a last option is to log in as root and
+  type the necessary commands.
+* Use *reboot* to reboot the system.
+* Use *halt* to halt the system without powering it off.
+* To power off the machine, use *poweroff* or *shutdown -h now*.
+* The systemd init system provides additional commands that perform the same
+  functions; for example *systemctl reboot* or *systemctl poweroff*.
+
+== 8.2 Orienting Yourself to Debian
+
+* Debian is a little different from other distributions.
+* Even if you're familiar with Linux in other distributions, there are things
+  you should know about Debian to help you to keep your system in a good,
+  clean state.
+* This chapter contains material to help you get oriented; it is not intended
+  to be a tutorial for how to use Debian, but just a very brief glimpse of the
+  system for the very rushed.
+
+=== 8.2.1 Debian Packaging System
+
+* The most important concept to grasp is the Debian packaging system.
+* In essence, large parts of your system should be considered under the
+  control of the packaging system.
+* These include:
+** `/usr` (excluding `/usr/local`)
+** `/var` (you could make `/var/local` and be safe in there)
+** `/bin`
+** `/sbin`
+** `/lib`
+
+* For instance, if you replace `/usr/bin/perl`, that will work, but then if
+  you upgrade your perl package, the file you put there will be replaced.
+* Experts can get around this by putting packages on "hold" in *aptitude*.
+
+'''
+
+* One of the best installation methods is apt.
+* You can use the command line version of *apt* as well as tools like aptitude
+  or synaptic (which are just graphical frontends for *apt*).
+* Note that apt will also let you merge main, contrib, non-free, and
+  non-free-firmware so you can have restricted packages (strictly speaking not
+  belonging to Debian) as well as packages from Debian GNU/Linux at the same
+  time.
+
+=== 8.2.4 Cron Job Management
+
+* Any jobs under the purview of the system administrator should be in `/etc`,
+  since they are configuration files.
+* If you have a root cron job for daily, weekly, or monthly runs, put them in
+  `/etc/cron.{daily,weekly,monthly}`.
+* These are invoked from `/etc/crontab`, and will run in alphabetic order, which
+  serializes them.
+
+'''
+
+* On the other hand, if you have a cron job that (a) needs to run as a special
+  user, or (b) needs to run at a special time or frequency, you can use either
+  `/etc/crontab`, or, better yet, `/etc/cron.d/whatever`.
+* These particular files also have an extra field that allows you to stipulate
+  the user account under which the cron job runs.
+
+'''
+
+* In either case, you just edit the files and cron will notice them
+  automatically.
+* There is no need to run a special command.
+* For more information see cron(8), crontab(5), and
+  `/usr/share/doc/cron/README.Debian`.
