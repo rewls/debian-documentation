@@ -1,0 +1,56 @@
+= Uncomplicated Firewall (ufw)
+
+* *Uncomplicated Firewall (ufw)* -- The Uncomplicated Firewall (ufw, and gufw
+  - a Graphical User Interface version of the same) is a frontend for iptables
+  and is particularly well-suited for host-based firewalls.
+* Ufw provides a framework for managing netfilter, as well as a command-line
+  interface for manipulating the firewall.
+
+== Installation
+
+* Uncomplicated Firewall can be easily installed by typing this command into
+  the terminal as a super user:
++
+[source,sh]
+# apt-get install ufw
+
+* However, simply installing the firewall will not turn it on automatically,
+  nor it will have any rule set by default.
+
+== Configuration
+
+[WARNING]
+====
+* If you are configuring over SSH, you may wish to allow SSH before enabling
+  the firewall.
+* If your connection gets interrupted before allowing SSH you may be locked
+  out of your system.
+====
+
+* Firstly, the firewall must be enabled by typing:
++
+[source,sh]
+# ufw enable
+
+[NOTE]
+====
+* it may be disabled the same way, by replacing _enable_ with _disable_.
+====
+
+* Secondly, defaults must be set up.
+* For normal users the following defaults will do just fine.
++
+[source,sh]
+# ufw default deny incoming
+# ufw default allow outgoing
+
+* Next, it is recommended to verify that the firewall is enabled by typing:
++
+[source,sh]
+# ufw status verbose
+
+[NOTE]
+====
+* With this command you will also be able to see all of the defaults and rules
+  which you have applied.
+====
