@@ -1,0 +1,19 @@
+= DHCP_Server
+
+== Introduction
+
+* When you set up a Local Area Network (LAN), a client needs to have certain
+  information, such as the IP-address of its interface, the IP-address of at
+  least one domain name server, and the IP-address of a server in the LAN that
+  serves as a router to the internet.
+* In the manual setup you have to type in this information for each client
+  anew.
+* With the Dynamic Host Configuration Protocol (DHCP) the computers can do
+  that automatically for you.
+* This is particularly convenient for connecting laptops to the network.
+
+'''
+
+* For a simple configuration of your network you can set up one computer (e.g.
+  the one connected to the internet) as a DHCP server and each of the other
+  computers as a DHCP_Client.

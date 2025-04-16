@@ -1,0 +1,43 @@
+= DHCP_Client
+
+== Introduction
+
+* See introduction of DHCP_Server.
+
+== Configuration
+
+=== Basic configuration
+
+* For a basic configuration you have to edit the file
+  `/etc/network/interfaces`, which defines the interfaces of your computer.
+* If you want to use `eth0` as the interface to be configured through DHCP
+  during boot up, add/edit the `eth0`-entry
++
+....
+auto eth0
+iface eth0 inet dhcp
+....
+
+* The different keywords have the following meaning:
+`auto`:: the interface should be configured during boot time.
+`inet`:: interface uses TCP/IP networking.
+`dhcp`:: the interface can be configured through DHCP.
+
+* That is all.
+
+'''
+
+* To change the system to use a static IP address (not dhcp), change the
+  `/etc/network/interfaces` file to something like:
++
+....
+iface eth0 inet static
+    address 192.168.12.2
+    netmask 255.255.255.0
+    gateway 192.168.12.254
+....
+
+=== Advanced configuration
+
+* Consult the man pages of interfaces(5) (man interfaces) and dhclient(8) for
+  more advanced options.
