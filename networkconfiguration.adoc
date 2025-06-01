@@ -1,0 +1,41 @@
+= NetworkConfiguration
+
+== 4 ways to configure the network
+
+* The interfaces configuration file at /etc/network/interfaces (this page):
+  for basic or simple configurations (e.g. workstation)
+* NetworkManager: This is the default for Laptop configuration
+* Systemd: Debian reference Doc Chapter 5
+* Netplan: Debian reference Doc Chapter 5
+
+== Setting up an Ethernet Interface
+
+* The majority of network setup can be done via the `interfaces` configuration
+  file at `/etc/network/interfaces`.
+* Here, you can give your network card an IP address (or use dhcp), set up
+  routing information, configure IP masquerading, set default routes and much
+  more.
+
+'''
+
+* Remember to add interfaces that you want brought up at boot time to the
+  'auto' line.
+
+* See `man interfaces` for more options.
+
+== Starting and Stopping Interfaces
+
+* Interfaces configured with `/etc/network/interfaces` can be brought up and
+  down with the `ifup` and `ifdown` commands.
+
+'''
+
+* Some outdated guides instruct to restart the networking service to apply
+  changes to `/etc/network/interfaces`, however this was deprecated because it
+  is possible that not all interfaces will be restarted.
+* Instead use `ifup` and `ifdown` to apply changes to each interface, for
+  example with an interface named enp7s0:
+
+[source,sh]
+# ifdown enp7s0
+# ifup enp7s0
